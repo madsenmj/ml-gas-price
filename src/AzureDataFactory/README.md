@@ -5,8 +5,8 @@
 - Create a Storage Account with name: blobstorageaccount
 - Get the storage account keys found in "settings -> Access Keys"
 - Create a blob storage container: blobstoragecontainer 
-- Upload the pig script: ["oilproc.pig"](\src\blobstoragecontainer\oilproc.pig) to the blob container
-- Upload the pig utility script ["piggybank.jar"](\src\blobstoragecontainer\piggybank.jar) to the blob container
+- Upload the pig script: ["oilproc.pig"](oilproc.pig) to the blob container
+- Upload the pig utility script ["piggybank.jar"](piggybank.jar) to the blob container
 
 I also create an AzureML trained model to make predictions on the data. I get the web service endpoint and API key from the AzureML portal.
 
