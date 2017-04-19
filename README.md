@@ -1,8 +1,10 @@
 # Gas Price Prediction Model
 
-This project is a demonstration of a couple of different tools:
+This project uses public data from the [U.S. Energy Information Administration](https://www.eia.gov/) to predict the average price of gasoline at the pump in the United States. I first explore the data and do a preliminary machine learning model test to verify that I can predict the price of gas. I then build a productionalized environment that automatically updates the data and a business dashboard on a weekly basis.
 
-- R
+This project is a demonstration of the following tools:
+
+- R machine learning libraries
 - Microsoft Azure Data Factory
 - Microsoft Azure ML
 - Microsoft PowerBI
