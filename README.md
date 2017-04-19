@@ -10,44 +10,55 @@ This project is a demonstration of a couple of different tools:
 
 The final project presentation is a [PowerPoint presentation](Oil_Price_Demo.pptx) and a corresponding [YouTube Video](https://youtu.be/cvPfYq-O7Fc).
 
-# Workflow
+# Data Exploration
+
+Preliminary data exploration is done in R. The [R ipython notebook goes through the data exploration.](/src/PricePredictor.ipynb)
+
+# Train Azure ML Model
 
 ## Build Azure Training Model
+
+![AzureML Image](/docs/AzureMLsetup.png)
+
 The Azure Machine Learning studio model consists of the following steps:
-	1. Import Data (from the ABS container - import the training features and the training values as separate import steps)
-	2. Edit Metadata (the columns are given names and the data type is updated based on the column information that was used in the pig script) - one Edit Metadata is needed for each data type to fix all of them
-	3. Join Data (the training features and values are joined by the Date column, which they both have, as an inner join)
-	4. Select Columns in Dataset (After the join, there are extra duplicate columns. This cleans those columns out)
-	[[During initial testing, I inserted a "split data" node here to split the data into training and testing. This was removed to do the final training experiment]]
-	5. Use a Boosted Decision Tree Regression (single parameter, 20 leaves per tree, 10 data points per leaf, learning rate of 0.2 and 200 trees)
-	6. Train Model
-	[[During initial testing, I inserted two more nodes: a "Score Model" node and an "Evaluate Model" node to check the model's performance on the split data. These were both removed to do the final training experiment.]]
-	
-Create Predictive Experiment
-The default predictive experiment is not quite correct. I deleted the "Web service input" node and re-configured the "Import Data" node to have a web service parameter for the input file name. The input file is then passed to that node as a file name by the ADF pipeline.
+
+1. Import Data Node: imports the training features and the training values as separate import steps from the Azure Blob Storage container.
+2. Edit Metadata Node: The columns are given names and the data type is updated based on the column information that was used in the pig script. One Edit Metadata is needed for each data type to fix all of them
+3. Join Data Node (Preliminary training, not shown): The training features and values are joined by the Date column, which they both have, as an inner join.
+4. Select Columns in Dataset Node: After the join, there are extra duplicate columns. This cleans those columns out. Note: During initial testing, I inserted a "split data" node here to split the data into training and testing. This was removed to do the final training experiment.
+5. Use a Boosted Decision Tree Regression Node: Use a single parameter, 20 leaves per tree, 10 data points per leaf, learning rate of 0.2 and 200 trees.
+6. Train Model Node: During initial testing, I inserted two more nodes: a "Score Model" node and an "Evaluate Model" node to check the model's performance on the split data. These were both removed to do the final training experiment.
+
+
+## Create Predictive Experiment
+The default predictive experiment is not quite correct. I deleted the "Web service input" node and re-configured the "Import Data" node to have a web service parameter for the input file name. The input file is then passed to that node as a file name by the Azure Data Factory pipeline.
 
 After editing the metadata, I created a second "Select Columns in Dataset" node to pull the Date column to be joined with the data again after scoring it.
 
 The input features are scored with a "Score Model" node, then the Date is joined to the scored data with a "Add columns" node (with the date on the left).
 
-The output from this is then sent to the Web service output
+The output from this is then sent to the Web service output.
 
-Predict Data
-I now run the final pipeline to predict the values of the final test features. This gives me four final files of data stored on the ABS:
+## Predict Data
+I now run the final pipeline to predict the values of the final test features. This gives me four final files of data stored in the [Azure Blob Storage container](/src/blobstoragecontainer):
 
-trainvalues.txt/part-r-00000
-testvalues.txt/part-r-00000
-20150201trainpredictionresult.csv
-20150201predictionresult.csv
+- trainvalues.txt/part-r-00000
+- testvalues.txt/part-r-00000
+- 20150201trainpredictionresult.csv
+- 20150201predictionresult.csv
 
-The output from the pipeline creates the last two .csv files from the first two. (I manually changed the pipeline input and output files to create each output file separately, as it currently is configured, it only creates the data from the testfeatures.txt/part-r-00000 input file.)
+The output from the pipeline creates the last two .csv files from the first two. (Note: I manually changed the pipeline input and output files to create each output file separately, as it currently is configured, it only creates the data from the testfeatures.txt/part-r-00000 input file.)
 
-## Build the Azure Data Factory 
+## Get Azure ML web service endpoint
+
+I get the webservice endpoint and api key from the Azure ML web service portal. I need these to set up the automatic scoring in the Data Factory.
+
+# Build the Azure Data Factory 
 
 The instructions and scripts for building the [Azure Data Factory are here.](/src/AzureDataFactory/README.md)
 
-Visualize Data
-The last step is to create a report in Power BI to visualize the data. This involves a number of steps.
+# Visualize Data
+The last step is to create a [report in Power BI](/src/PricePredictor.pbix) to visualize the data. This involves a number of steps.
 
 Power BI Queries:
 	• Input the data from the Azure Blob storage (using the URL for each file)
