@@ -1,0 +1,15 @@
+{
+    "name": "EIATableLinkedService3",
+    "properties": {
+        "description": "Retrieve weekly Days supply of gas from www.eia.gov",
+        "hubName": "azuredatafactory_hub",
+        "type": "Web",
+        "typeProperties": {
+            "url": "http://www.eia.gov/opendata/qb.cfm?sdid=PET.W_EPM0_VSD_NUS_DAYS.W",
+            "authenticationType": "Anonymous"
+        }
+    }
+}
+
+
+

@@ -1,0 +1,13 @@
+{
+    "name": "GasPriceAzureMLLinkedService",
+    "properties": {
+		"description": "Connects to the trained Azure ML model web service",
+        "hubName": "azuredatafactory_hub",
+        "type": "AzureML",
+        "typeProperties": {
+            "mlEndpoint": "https://ussouthcentral.services.azureml.net/workspaces/c9d5f231664846ffa0399a8aa28477dd/services/43af877277a04cda8a5f96e92114948a/jobs?api-version=2.0",
+            "apiKey": "**********"
+        }
+    }
+}
+ 

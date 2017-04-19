@@ -1,0 +1,14 @@
+{
+    "name": "EIATableLinkedService4",
+    "properties": {
+        "description": "Retrieve weekly Gas Imports from www.eia.gov",
+        "hubName": "azuredatafactory_hub",
+        "type": "Web",
+        "typeProperties": {
+            "url": "http://www.eia.gov/opendata/qb.cfm?sdid=PET.WGTIMUS2.W",
+            "authenticationType": "Anonymous"
+        }
+    }
+}
+
+

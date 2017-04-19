@@ -1,0 +1,14 @@
+{
+    "name": "EIATableLinkedService2",
+    "properties": {
+        "description": "Retrieve weekly Stock of Finished Gas from www.eia.gov",
+        "hubName": "azuredatafactory_hub",
+        "type": "Web",
+        "typeProperties": {
+            "url": "http://www.eia.gov/opendata/qb.cfm?sdid=PET.WGFSTUS1.W",
+            "authenticationType": "Anonymous"
+        }
+    }
+}
+
+

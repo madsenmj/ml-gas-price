@@ -1,0 +1,11 @@
+{
+    "name": "AzureStorageLinkedService",
+    "properties": {
+        "description": "Creates a linked service to the Azure Blob Storage accound. Need the Access Keys from the storage account to connect.",
+        "hubName": "azuredatafactory_hub",
+        "type": "AzureStorage",
+        "typeProperties": {
+            "connectionString": "DefaultEndpointsProtocol=https;AccountName=blobstorageaccount;AccountKey=**********"
+        }
+    }
+}

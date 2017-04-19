@@ -1,0 +1,14 @@
+{
+    "name": "EIATableLinkedService5",
+    "properties": {
+        "description": "Retrieve weekly Refinery Utilization from www.eia.gov",
+        "hubName": "azuredatafactory_hub",
+        "type": "Web",
+        "typeProperties": {
+            "url": "http://www.eia.gov/opendata/qb.cfm?sdid=PET.WPULEUS3.W",
+            "authenticationType": "Anonymous"
+        }
+    }
+}
+
+

@@ -1,0 +1,12 @@
+{
+    "name": "EIATableLinkedService",
+    "properties": {
+        "description": "Retrieves the Crude Oil Spot Price from www.eia.gov",
+        "hubName": "azuredatafactory_hub",
+        "type": "Web",
+        "typeProperties": {
+            "url": "http://www.eia.gov/opendata/qb.cfm?sdid=PET.RWTC.D",
+            "authenticationType": "Anonymous"
+        }
+    }
+}
