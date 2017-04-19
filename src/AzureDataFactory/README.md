@@ -51,3 +51,7 @@ From the "Diagram" on ADF, choose the output end point for one of the jobs by do
 Run the first two pipelines to create the training data set before creating the trained model.
 
 After running a single time, use the EIAPipeline to run the entire script weekly.
+
+The final Data Factory pipeline should look like this:
+
+![DataFactoryImage](/docs/AzureDataFactorySetup.png)
