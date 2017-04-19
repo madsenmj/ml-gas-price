@@ -1,0 +1,42 @@
+{
+    "name": "EIAPredictivePipeline",
+    "properties": {
+        "description": "use AzureML model",
+        "activities": [
+            {
+                "type": "AzureMLBatchExecution",
+                "typeProperties": {
+                    "webServiceOutputs": {
+                        "output1": "EIAAzureMLResultBlob"
+                    },
+                    "globalParameters": {
+                        "Path to container, directory or blob": "blobstoragecontainer/testfeatures.txt/part-r-00000"
+                    }
+                },
+                "outputs": [
+                    {
+                        "name": "EIAAzureMLResultBlob"
+                    }
+                ],
+                "policy": {
+                    "timeout": "02:00:00",
+                    "concurrency": 3,
+                    "executionPriorityOrder": "NewestFirst",
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Month",
+                    "interval": 1
+                },
+                "name": "MLActivity",
+                "description": "prediction analysis on batch input",
+                "linkedServiceName": "GasPriceAzureMLLinkedService"
+            }
+        ],
+        "start": "2015-02-13T00:00:00Z",
+        "end": "2015-02-14T00:00:00Z",
+        "isPaused": false,
+        "hubName": "azuredatafactory_hub",
+        "pipelineMode": "Scheduled"
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "name": "EIAPigPipeline",
+    "properties": {
+        "activities": [
+            {
+                "type": "HDInsightPig",
+                "typeProperties": {
+                    "scriptPath": "blobstoragecontainer\\oilproc.pig",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "EIAPigInput"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "EIAPigOutput"
+                    }
+                ],
+                "scheduler": {
+                    "frequency": "Month",
+                    "interval": 1
+                },
+                "name": "PigActivitySample",
+                "linkedServiceName": "HDInsightOnDemandLinkedService"
+            }
+        ],
+        "start": "2014-06-01T18:00:00Z",
+        "end": "2014-06-01T19:00:00Z",
+        "isPaused": false,
+        "hubName": "azuredatafactory_hub",
+        "pipelineMode": "Scheduled"
+    }
+}

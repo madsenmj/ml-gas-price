@@ -12,45 +12,7 @@ The final project presentation is a [PowerPoint presentation](Oil_Price_Demo.ppt
 
 # Workflow
 
-Create Azure Blob Storage
-
-Storage Account Name: mmadsenads
-Keys found in "settings -> Access Keys"
-
-Created a blob container: gaspriceprod  (manually mirrored on the Allegient OneDrive account under gaspriceprod)
-
-Uploaded the pig script: "oilproc.pig" to the blob container (see script at the end of this document)
-
-Create Azure Data Factory
-
-Created the factory Name: mmadsenadf
-
-Under "Author and deploy" created the following items:
-
-Linked Services:
-AzureStorageLinkedService (connects to the Azure Blob storage created above)
-EIATableLinkedService [from 0-8] (connects to a website with a table of data to pull the data from that table)
-GasPriceAzureMLLinkedService (connects to the trained Azure ML model web service)
-HDInsightOnDemandLinkedService (creates an HDInsight on-demand cluster for running a pig script)
-
-Datasets
-EIATableDataset [from 0-8] (inputs the web tables)
-EIABlobDataset [from 0-8] (outputs the tables as text files, comma-separated to ABS)
-EIAPigInput (input the pig script)
-EIAPigOutput (output the results of the pig script)
-EIAAzureMLResultBlob (creates a prediction of data based on the Azure ML model)
-
-Pipelines
-EIAtoBlobPipeline (get the data from the web tables and save it on the ABS)
-EIAPigPipeline (run the pig script to process the data)
-EIAPredictivePipeline (run the AML model against the data to make predictions
-
-Execute Data Factory Jobs
-From the "Diagram" on ADF, choose the output end point for one of the jobs by double-clicking. By selecting the "Recently updated slices" in the "Monitoring" tile, I manually run the job (clicking "Run" in the "Data Slice" blade that appears to the right.
-
-Run the first two pipelines to create the training data set before creating the trained model.
-
-Build Training Model
+## Build Azure Training Model
 The Azure Machine Learning studio model consists of the following steps:
 	1. Import Data (from the ABS container - import the training features and the training values as separate import steps)
 	2. Edit Metadata (the columns are given names and the data type is updated based on the column information that was used in the pig script) - one Edit Metadata is needed for each data type to fix all of them
@@ -79,6 +41,10 @@ testvalues.txt/part-r-00000
 20150201predictionresult.csv
 
 The output from the pipeline creates the last two .csv files from the first two. (I manually changed the pipeline input and output files to create each output file separately, as it currently is configured, it only creates the data from the testfeatures.txt/part-r-00000 input file.)
+
+## Build the Azure Data Factory 
+
+The instructions and scripts for building the [Azure Data Factory are here.](/src/AzureDataFactory/README.md)
 
 Visualize Data
 The last step is to create a report in Power BI to visualize the data. This involves a number of steps.

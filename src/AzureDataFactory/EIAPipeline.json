@@ -1,0 +1,369 @@
+{
+    "name": "EIAPipeline",
+    "properties": {
+        "description": "pipeline with copy activity, pig processing activity, and machine learning prediction activity",
+        "activities": [
+            {
+                "type": "Copy",
+                "typeProperties": {
+                    "source": {
+                        "type": "WebSource"
+                    },
+                    "sink": {
+                        "type": "BlobSink",
+                        "writeBatchSize": 100,
+                        "writeBatchTimeout": "00:00:00"
+                    }
+                },
+                "inputs": [
+                    {
+                        "name": "EIATableData1"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "EIABlobData1"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Week",
+                    "interval": 1
+                },
+                "name": "WebTableToAzureBlob",
+                "description": "Copy from a Web table to an Azure blob"
+            },
+            {
+                "type": "Copy",
+                "typeProperties": {
+                    "source": {
+                        "type": "WebSource"
+                    },
+                    "sink": {
+                        "type": "BlobSink",
+                        "writeBatchSize": 100,
+                        "writeBatchTimeout": "00:00:00"
+                    }
+                },
+                "inputs": [
+                    {
+                        "name": "EIATableData2"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "EIABlobData2"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Week",
+                    "interval": 1
+                },
+                "name": "WebTableToAzureBlob2",
+                "description": "Copy from a Web table to an Azure blob"
+            },
+            {
+                "type": "Copy",
+                "typeProperties": {
+                    "source": {
+                        "type": "WebSource"
+                    },
+                    "sink": {
+                        "type": "BlobSink",
+                        "writeBatchSize": 100,
+                        "writeBatchTimeout": "00:00:00"
+                    }
+                },
+                "inputs": [
+                    {
+                        "name": "EIATableData3"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "EIABlobData3"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Week",
+                    "interval": 1
+                },
+                "name": "WebTableToAzureBlob3",
+                "description": "Copy from a Web table to an Azure blob"
+            },
+            {
+                "type": "Copy",
+                "typeProperties": {
+                    "source": {
+                        "type": "WebSource"
+                    },
+                    "sink": {
+                        "type": "BlobSink",
+                        "writeBatchSize": 100,
+                        "writeBatchTimeout": "00:00:00"
+                    }
+                },
+                "inputs": [
+                    {
+                        "name": "EIATableData4"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "EIABlobData4"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Week",
+                    "interval": 1
+                },
+                "name": "WebTableToAzureBlob4",
+                "description": "Copy from a Web table to an Azure blob"
+            },
+            {
+                "type": "Copy",
+                "typeProperties": {
+                    "source": {
+                        "type": "WebSource"
+                    },
+                    "sink": {
+                        "type": "BlobSink",
+                        "writeBatchSize": 100,
+                        "writeBatchTimeout": "00:00:00"
+                    }
+                },
+                "inputs": [
+                    {
+                        "name": "EIATableData5"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "EIABlobData5"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Week",
+                    "interval": 1
+                },
+                "name": "WebTableToAzureBlob5",
+                "description": "Copy from a Web table to an Azure blob"
+            },
+            {
+                "type": "Copy",
+                "typeProperties": {
+                    "source": {
+                        "type": "WebSource"
+                    },
+                    "sink": {
+                        "type": "BlobSink",
+                        "writeBatchSize": 100,
+                        "writeBatchTimeout": "00:00:00"
+                    }
+                },
+                "inputs": [
+                    {
+                        "name": "EIATableData7"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "EIABlobData7"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Week",
+                    "interval": 1
+                },
+                "name": "WebTableToAzureBlob7",
+                "description": "Copy from a Web table to an Azure blob"
+            },
+            {
+                "type": "Copy",
+                "typeProperties": {
+                    "source": {
+                        "type": "WebSource"
+                    },
+                    "sink": {
+                        "type": "BlobSink",
+                        "writeBatchSize": 100,
+                        "writeBatchTimeout": "00:00:00"
+                    }
+                },
+                "inputs": [
+                    {
+                        "name": "EIATableData8"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "EIABlobData8"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Week",
+                    "interval": 1
+                },
+                "name": "WebTableToAzureBlob8",
+                "description": "Copy from a Web table to an Azure blob"
+            },
+            {
+                "type": "Copy",
+                "typeProperties": {
+                    "source": {
+                        "type": "WebSource"
+                    },
+                    "sink": {
+                        "type": "BlobSink",
+                        "writeBatchSize": 100,
+                        "writeBatchTimeout": "00:00:00"
+                    }
+                },
+                "inputs": [
+                    {
+                        "name": "EIATableData0"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "EIABlobData0"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Week",
+                    "interval": 1
+                },
+                "name": "WebTableToAzureBlob0",
+                "description": "Copy from a Web table to an Azure blob"
+            },
+            {
+                "type": "HDInsightPig",
+                "typeProperties": {
+                    "scriptPath": "pricepredictor\\oilprocweek.pig",
+                    "scriptLinkedService": "AzureStorageLinkedService",
+                    "defines": {
+                        "Input1": "$$Text.Format('wasb://pricepredictor@blobstorageaccount.blob.core.windows.net/{0:yyyy}{0:MM}{0:dd}/input_1/',SliceStart)",
+                        "Input2": "$$Text.Format('wasb://pricepredictor@blobstorageaccount.blob.core.windows.net/{0:yyyy}{0:MM}{0:dd}/input_2/',SliceStart)",
+                        "Input3": "$$Text.Format('wasb://pricepredictor@blobstorageaccount.blob.core.windows.net/{0:yyyy}{0:MM}{0:dd}/input_3/',SliceStart)",
+                        "Input4": "$$Text.Format('wasb://pricepredictor@blobstorageaccount.blob.core.windows.net/{0:yyyy}{0:MM}{0:dd}/input_4/',SliceStart)",
+                        "Input5": "$$Text.Format('wasb://pricepredictor@blobstorageaccount.blob.core.windows.net/{0:yyyy}{0:MM}{0:dd}/input_5/',SliceStart)",
+                        "Input7": "$$Text.Format('wasb://pricepredictor@blobstorageaccount.blob.core.windows.net/{0:yyyy}{0:MM}{0:dd}/input_7/',SliceStart)",
+                        "Input8": "$$Text.Format('wasb://pricepredictor@blobstorageaccount.blob.core.windows.net/{0:yyyy}{0:MM}{0:dd}/input_8/',SliceStart)",
+                        "Input0": "$$Text.Format('wasb://pricepredictor@blobstorageaccount.blob.core.windows.net/{0:yyyy}{0:MM}{0:dd}/price_0/',SliceStart)",
+                        "Output1": "$$Text.Format('wasb://pricepredictor@blobstorageaccount.blob.core.windows.net/{0:yyyy}{0:MM}{0:dd}/trainfeatures.txt',SliceStart)",
+                        "Output2": "$$Text.Format('wasb://pricepredictor@blobstorageaccount.blob.core.windows.net/{0:yyyy}{0:MM}{0:dd}/testfeatures.txt',SliceStart)",
+                        "Output3": "$$Text.Format('wasb://pricepredictor@blobstorageaccount.blob.core.windows.net/{0:yyyy}{0:MM}{0:dd}/trainvalues.txt',SliceStart)",
+                        "Output4": "$$Text.Format('wasb://pricepredictor@blobstorageaccount.blob.core.windows.net/{0:yyyy}{0:MM}{0:dd}/testvalues.txt',SliceStart)"
+                    }
+                },
+                "inputs": [
+                    {
+                        "name": "EIABlobData0"
+                    },
+                    {
+                        "name": "EIABlobData1"
+                    },
+                    {
+                        "name": "EIABlobData2"
+                    },
+                    {
+                        "name": "EIABlobData3"
+                    },
+                    {
+                        "name": "EIABlobData4"
+                    },
+                    {
+                        "name": "EIABlobData5"
+                    },
+                    {
+                        "name": "EIABlobData7"
+                    },
+                    {
+                        "name": "EIABlobData8"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "EIAPigWeekOutput"
+                    }
+                ],
+                "scheduler": {
+                    "frequency": "Week",
+                    "interval": 1
+                },
+                "name": "PigActivitySample",
+                "linkedServiceName": "HDInsightOnDemandLinkedService"
+            },
+            {
+                "type": "AzureMLBatchExecution",
+                "typeProperties": {
+                    "webServiceOutputs": {
+                        "output1": "EIAMLResultBlob"
+                    },
+                    "globalParameters": {
+                        "Path to container, directory or blob": "$$Text.Format('pricepredictor/{0:yyyy}{0:MM}{0:dd}/testfeatures.txt/part-r-00000',SliceStart)"
+                    }
+                },
+                "inputs": [
+                    {
+                        "name": "EIAPigWeekOutput"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "EIAMLResultBlob"
+                    }
+                ],
+                "policy": {
+                    "timeout": "02:00:00",
+                    "concurrency": 3,
+                    "executionPriorityOrder": "NewestFirst",
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Week",
+                    "interval": 1
+                },
+                "name": "MLActivity",
+                "description": "prediction analysis on batch input",
+                "linkedServiceName": "GasPriceAzureMLLinkedService"
+            }
+        ],
+        "start": "2016-04-01T00:00:00Z",
+        "end": "2016-08-01T00:00:00Z",
+        "isPaused": false,
+        "hubName": "azuredatafactory_hub",
+        "pipelineMode": "Scheduled"
+    }
+}

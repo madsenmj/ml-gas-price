@@ -1,0 +1,17 @@
+{
+    "name": "EIATableDataset3",
+    "properties": {
+        "published": false,
+        "type": "WebTable",
+        "linkedServiceName": "EIATableLinkedService3",
+        "typeProperties": {
+            "index": 0
+        },
+        "availability": {
+            "frequency": "Month",
+            "interval": 1
+        },
+        "external": true,
+        "policy": {}
+    }
+}

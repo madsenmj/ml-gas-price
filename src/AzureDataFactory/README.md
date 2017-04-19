@@ -16,36 +16,38 @@ Create the factory Name: azuredatafactory
  
 Under "Author and deploy" create the following items:
  
-Linked Services:
+### Linked Services
 
-- [AzureStorageLinkedService](AzureStorageLinkedService.json): connects to the Azure Blob storage created above
-- [EIATableLinkedService](EIATableLinkedService.json): Retrieves the daily Crude Oil Spot Price from [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.RWTC.D)
-- [EIATableLinkedService0](EIATableLinkedService0.json): Retrieves weekly Gas Prices from [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.EMM_EPM0U_PTE_NUS_DPG.W)
-- [EIATableLinkedService2](EIATableLinkedService2.json): Retrieve weekly Stock of Finished Gas from [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.WGFSTUS1.W)
-- [EIATableLinkedService3](EIATableLinkedService3.json): Retrieve weekly Days supply of gas from [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.W_EPM0_VSD_NUS_DAYS.W)
-- [EIATableLinkedService4](EIATableLinkedService4.json): Retrieve weekly Gas Imports from [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.WGTIMUS2.W)
-- [EIATableLinkedService5](EIATableLinkedService5.json): Retrieve weekly Refinery Utilization from [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.WPULEUS3.W)
-- [EIATableLinkedService7](EIATableLinkedService7.json): Retrieve weekly Crude Oil Exports from [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.WCREXUS2.W)
-- [EIATableLinkedService8](EIATableLinkedService8.json): Retrieve weekly Crude Oil Imports [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.WCRIMUS2.W)
-- [GasPriceAzureMLLinkedService](GasPriceAzureMLLinkedService.json) Connects to the trained Azure ML model web service
-- [HDInsightOnDemandLinkedService](HDInsightOnDemandLinkedService.json) Create an HDInsightOnDemand service to run the Hadoop PIG script which processes and joins the data prior to making predictions.
+- AzureStorageLinkedService.json: connects to the Azure Blob storage created above
+- EIATableLinkedService.json: Retrieves the daily Crude Oil Spot Price from [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.RWTC.D)
+- EIATableLinkedService0.json: Retrieves weekly Gas Prices from [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.EMM_EPM0U_PTE_NUS_DPG.W)
+- EIATableLinkedService2.json: Retrieve weekly Stock of Finished Gas from [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.WGFSTUS1.W)
+- EIATableLinkedService3.json: Retrieve weekly Days supply of gas from [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.W_EPM0_VSD_NUS_DAYS.W)
+- EIATableLinkedService4.json: Retrieve weekly Gas Imports from [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.WGTIMUS2.W)
+- EIATableLinkedService5.json: Retrieve weekly Refinery Utilization from [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.WPULEUS3.W)
+- EIATableLinkedService7.json: Retrieve weekly Crude Oil Exports from [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.WCREXUS2.W)
+- EIATableLinkedService8.json: Retrieve weekly Crude Oil Imports [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.WCRIMUS2.W)
+- GasPriceAzureMLLinkedService.json: Connects to the trained Azure ML model web service
+- HDInsightOnDemandLinkedService.json: Create an HDInsightOnDemand service to run the Hadoop PIG script which processes and joins the data prior to making predictions.
  
+### Datasets
+- EIATableDataset.json, EIATableDataset0.json, EIATableDataset1.json, EIATableDataset2.json, EIATableDataset3.json, EIATableDataset4.json, EIATableDataset5.json, EIATableDataset7.json, EIATableDataset8.json: These datasets provide the inputs from the blob storage to the pipelines.
+- EIABlobDataset.json, EIABlobDataset0.json, EIABlobDataset1.json, EIABlobDataset2.json, EIABlobDataset3.json, EIABlobDataset4.json, EIABlobDataset5.json, EIABlobDataset7.json, EIABlobDataset8.json: These datasets are the outputs from the pipeline to blob storage.
+- EIAPigInput.json: Input the pig script
+- EIAPigOutput.json: Output the results of the pig script
+- EIAAzureMLResultBlob.json: Creates a prediction of data based on the Azure ML model.
  
+### Pipelines
+- EIAtoBlobPipeline.json: Get the data from the web tables and save it in the Azure Blob storage container.
+- EIAPigPipeline.json:  Run the pig script to process the data.
+- EIAPredictivePipeline.json: Run the AML model against the data to make predictions.
  
-
-Datasets
-EIATableDataset [from 0-8] (inputs the web tables)
-EIABlobDataset [from 0-8] (outputs the tables as text files, comma-separated to ABS)
-EIAPigInput (input the pig script)
-EIAPigOutput (output the results of the pig script)
-EIAAzureMLResultBlob (creates a prediction of data based on the Azure ML model)
+### Pipeline Update:
+- EIAPipeline.json: Changes the frequency to weekly. Also integreates the other two pipelines into a single script.
  
-Pipelines
-EIAtoBlobPipeline (get the data from the web tables and save it on the ABS)
-EIAPigPipeline (run the pig script to process the data)
-EIAPredictivePipeline (run the AML model against the data to make predictions
- 
-Execute Data Factory Jobs
+## Execute Data Factory Jobs
 From the "Diagram" on ADF, choose the output end point for one of the jobs by double-clicking. By selecting the "Recently updated slices" in the "Monitoring" tile, I manually run the job (clicking "Run" in the "Data Slice" blade that appears to the right.
  
 Run the first two pipelines to create the training data set before creating the trained model.
+
+After running a single time, use the EIAPipeline to run the entire script weekly.
