@@ -18,17 +18,17 @@ Under "Author and deploy" create the following items:
  
 Linked Services:
 
-- (AzureStorageLinkedService)[AzureStorageLinkedService.json]: connects to the Azure Blob storage created above
-- (EIATableLinkedService)[EIATableLinkedService.json]: Retrieves the daily Crude Oil Spot Price from (www.eia.gov)[http://www.eia.gov/opendata/qb.cfm?sdid=PET.RWTC.D]
-- (EIATableLinkedService0)[EIATableLinkedService0.json]: Retrieves weekly Gas Prices from (www.eia.gov)[http://www.eia.gov/opendata/qb.cfm?sdid=PET.EMM_EPM0U_PTE_NUS_DPG.W]
-- (EIATableLinkedService2)[EIATableLinkedService2.json]: Retrieve weekly Stock of Finished Gas from (www.eia.gov)[http://www.eia.gov/opendata/qb.cfm?sdid=PET.WGFSTUS1.W]
-- (EIATableLinkedService3)[EIATableLinkedService3.json]: Retrieve weekly Days supply of gas from (www.eia.gov)[http://www.eia.gov/opendata/qb.cfm?sdid=PET.W_EPM0_VSD_NUS_DAYS.W]
-- (EIATableLinkedService4)[EIATableLinkedService4.json]: Retrieve weekly Gas Imports from (www.eia.gov)[http://www.eia.gov/opendata/qb.cfm?sdid=PET.WGTIMUS2.W]
-- (EIATableLinkedService5)[EIATableLinkedService5.json]: Retrieve weekly Refinery Utilization from (www.eia.gov)[http://www.eia.gov/opendata/qb.cfm?sdid=PET.WPULEUS3.W]
-- (EIATableLinkedService7)[EIATableLinkedService7.json]: Retrieve weekly Crude Oil Exports from (www.eia.gov)[http://www.eia.gov/opendata/qb.cfm?sdid=PET.WCREXUS2.W]
-- (EIATableLinkedService8)[EIATableLinkedService8.json]: Retrieve weekly Crude Oil Imports (www.eia.gov)[http://www.eia.gov/opendata/qb.cfm?sdid=PET.WCRIMUS2.W]
-- (GasPriceAzureMLLinkedService)[GasPriceAzureMLLinkedService.json] Connects to the trained Azure ML model web service
-- (HDInsightOnDemandLinkedService)[HDInsightOnDemandLinkedService.json] Create an HDInsightOnDemand service to run the Hadoop PIG script which processes and joins the data prior to making predictions.
+- [AzureStorageLinkedService](AzureStorageLinkedService.json): connects to the Azure Blob storage created above
+- [EIATableLinkedService](EIATableLinkedService.json): Retrieves the daily Crude Oil Spot Price from [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.RWTC.D)
+- [EIATableLinkedService0](EIATableLinkedService0.json): Retrieves weekly Gas Prices from [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.EMM_EPM0U_PTE_NUS_DPG.W)
+- [EIATableLinkedService2](EIATableLinkedService2.json): Retrieve weekly Stock of Finished Gas from [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.WGFSTUS1.W)
+- [EIATableLinkedService3](EIATableLinkedService3.json): Retrieve weekly Days supply of gas from [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.W_EPM0_VSD_NUS_DAYS.W)
+- [EIATableLinkedService4](EIATableLinkedService4.json): Retrieve weekly Gas Imports from [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.WGTIMUS2.W)
+- [EIATableLinkedService5](EIATableLinkedService5.json): Retrieve weekly Refinery Utilization from [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.WPULEUS3.W)
+- [EIATableLinkedService7](EIATableLinkedService7.json): Retrieve weekly Crude Oil Exports from [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.WCREXUS2.W)
+- [EIATableLinkedService8](EIATableLinkedService8.json): Retrieve weekly Crude Oil Imports [www.eia.gov](http://www.eia.gov/opendata/qb.cfm?sdid=PET.WCRIMUS2.W)
+- [GasPriceAzureMLLinkedService](GasPriceAzureMLLinkedService.json) Connects to the trained Azure ML model web service
+- [HDInsightOnDemandLinkedService](HDInsightOnDemandLinkedService.json) Create an HDInsightOnDemand service to run the Hadoop PIG script which processes and joins the data prior to making predictions.
  
  
  

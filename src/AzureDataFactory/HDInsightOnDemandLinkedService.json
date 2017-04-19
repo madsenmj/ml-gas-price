@@ -1,13 +1,26 @@
 {
-    "name": "GasPriceAzureMLLinkedService",
+    "name": "HDInsightOnDemandLinkedService",
     "properties": {
-		"description": "Connects to the trained Azure ML model web service",
+        "description": "Create an HDInsightOnDemand service to run the Hadoop PIG script which processes and joins the data prior to making predictions.",
         "hubName": "azuredatafactory_hub",
-        "type": "AzureML",
+        "type": "HDInsightOnDemand",
         "typeProperties": {
-            "mlEndpoint": "https://ussouthcentral.services.azureml.net/workspaces/c9d5f231664846ffa0399a8aa28477dd/services/43af877277a04cda8a5f96e92114948a/jobs?api-version=2.0",
-            "apiKey": "**********"
+            "version": "3.2",
+            "clusterSize": 1,
+            "timeToLive": "00:05:00",
+            "osType": "Linux",
+            "coreConfiguration": {},
+            "hBaseConfiguration": {},
+            "hdfsConfiguration": {},
+            "hiveConfiguration": {},
+            "mapReduceConfiguration": {},
+            "oozieConfiguration": {},
+            "sparkConfiguration": {},
+            "stormConfiguration": {},
+            "yarnConfiguration": {},
+            "additionalLinkedServiceNames": [],
+            "linkedServiceName": "AzureStorageLinkedService"
         }
     }
 }
- 
+
