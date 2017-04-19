@@ -58,24 +58,26 @@ I get the webservice endpoint and api key from the Azure ML web service portal. 
 The instructions and scripts for building the [Azure Data Factory are here.](/src/AzureDataFactory/README.md)
 
 # Visualize Data
-The last step is to create a [report in Power BI](/src/PricePredictor.pbix) to visualize the data. This involves a number of steps.
+The last component is to create a [report in Power BI](/src/PricePredictor.pbix) to visualize the data.
 
-Power BI Queries:
-	• Input the data from the Azure Blob storage (using the URL for each file)
-	• Adjust the data types and column names for each column
-	• Added a new column for each file: for the training data sets, added a column with the same entry "Model Training" and for the test data sets, the column with the same entry "Training Inputs"
-	• Appended the Query "Test Values" to the Query "Train Values", then sorted the rows by date and added an index column
-	• Appended the Query "Test Features" to the Query "Train Features", then sorted by date and added an index column
-	• Merged the two appended tables together using the Index column as the merge index, a left outer join
-	• Sort the rows by date and take care of any row re-naming that needs to be done
-	
+## Build the Power BI Queries
 
-The next step is to create the Measures that I need to work with:
-	• Get the price of the last day filtered on the page: the calculate gets the entry from the GasPrice column based on the filter where we are looking for the Index that matches the Max of the Index column. Since the Index column is in chronological order, this works to give us the last date. Probably not the most elegant solution, but it works.
-		○ CurrentPrice = FORMAT(CALCULATE(LASTNONBLANK('AllData'[Values.GasPrice],1), FILTER(ALL('AllData'),'AllData'[Index]=MAX('AllData'[Index])-1)),"$#.##")
-	• PredictDate = FORMAT( CALCULATE(LASTNONBLANK('AllData'[Values.RealDate],1), FILTER(ALL('AllData'),'AllData'[Index]=MAX('AllData'[Index]))), "MM/DD/YYYY")
-	• EndDate2 = FORMAT(CALCULATE(LASTNONBLANK('AllData'[Date],1), FILTER(ALL('AllData'),'AllData'[Index]=MAX('AllData'[Index]))),"MM/DD/YYYY")
-	• RealPrice = (CALCULATE(LASTNONBLANK('AllData'[Values.GasPrice],1), FILTER(ALL('AllData'),'AllData'[Index]=MAX('AllData'[Index]))))
-	• PredictDate = FORMAT( CALCULATE(LASTNONBLANK('AllData'[Values.RealDate],1), FILTER(ALL('AllData'),'AllData'[Index]=MAX('AllData'[Index]))), "MM/DD/YYYY")
+The PowerBI report is linked directly to the predictions stored in Azure Blob Storage. The query is build using the following steps.
+
+1. Input the data from the Azure Blob storage (using the URL for each file)
+2. Adjust the data types and column names for each column
+3. Added a new column for each file: for the training data sets, added a column with the same entry "Model Training" and for the test data sets, the column with the same entry "Training Inputs"
+4. Appended the Query "Test Values" to the Query "Train Values", then sorted the rows by date and added an index column
+5. Appended the Query "Test Features" to the Query "Train Features", then sorted by date and added an index column
+6. Merged the two appended tables together using the Index column as the merge index, a left outer join
+7. Sort the rows by date and take care of any row re-naming that needs to be done	
+
+The next step is to create the Measures to plot the data.
+- Get the price of the last day filtered on the page: the calculate gets the entry from the GasPrice column based on the filter where we are looking for the Index that matches the Max of the Index column. Since the Index column is in chronological order, this works to give us the last date. Probably not the most elegant solution, but it works.
+- `CurrentPrice = FORMAT(CALCULATE(LASTNONBLANK('AllData'[Values.GasPrice],1), FILTER(ALL('AllData'),'AllData'[Index]=MAX('AllData'[Index])-1)),"$#.##")`
+- `PredictDate = FORMAT( CALCULATE(LASTNONBLANK('AllData'[Values.RealDate],1), FILTER(ALL('AllData'),'AllData'[Index]=MAX('AllData'[Index]))), "MM/DD/YYYY")`
+- `EndDate2 = FORMAT(CALCULATE(LASTNONBLANK('AllData'[Date],1), FILTER(ALL('AllData'),'AllData'[Index]=MAX('AllData'[Index]))),"MM/DD/YYYY")`
+- `RealPrice = (CALCULATE(LASTNONBLANK('AllData'[Values.GasPrice],1), FILTER(ALL('AllData'),'AllData'[Index]=MAX('AllData'[Index]))))`
+- `PredictDate = FORMAT( CALCULATE(LASTNONBLANK('AllData'[Values.RealDate],1), FILTER(ALL('AllData'),'AllData'[Index]=MAX('AllData'[Index]))), "MM/DD/YYYY")`
 
 The last step is to make the graphs and format the page so that it is user-friendly and displays the information we want.
